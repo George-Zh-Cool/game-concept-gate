@@ -1,6 +1,6 @@
 interface:
-  display_name: "游戏概念立项闸门"
-  short_description: "游戏概念澄清与立项闸门，确保明确核心玩法后再开始开发"
-  default_prompt: "使用 $game-concept-gate 帮我澄清游戏概念，并判断是否可以立项开发。"
+  display_name: "Game Concept Gate"
+  short_description: "Clarify game concepts and gate project development"
+  default_prompt: "Use $game-concept-gate to clarify my game concept and decide whether it is ready for development."
 policy:
   allow_implicit_invocation: true

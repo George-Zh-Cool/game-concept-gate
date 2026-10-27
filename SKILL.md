@@ -1,270 +1,276 @@
 ---
 name: game-concept-gate
-description: 在游戏正式立项或开发前，通过十个核心问题完成玩法概念澄清、逻辑检查、概念摘要和立项确认。适用于用户想制作新游戏、准备立项，或要求开始开发但核心玩法和目标尚不明确时；不适用于纯头脑风暴、灵感发散、概念比较、已经确认立项后的局部实现、Bug 修复、数值调整或美术修改。
+description: "Clarify a game concept and gate project development through a structured ten-question review; supports English and Chinese requests for game concept clarification and project greenlighting. Use when a user wants to make a new game, prepare a greenlight decision, or asks to begin development before the core loop, goals, rules, or player experience are clear. Do not use for open-ended brainstorming, idea comparison, theoretical game analysis, or implementation work on an already-approved project."
 metadata:
-  short-description: 游戏概念澄清与立项闸门
-  version: "1.1.0"
+  short-description: "Game concept clarification and greenlight gate"
+  version: "1.2.0"
 ---
 
-# 游戏概念立项闸门
+# Game Concept Gate
 
-## 目的
+## Purpose
 
-把一个模糊的游戏想法转化为清晰、可讨论、可验证的概念方案，并判断它是否已经具备进入正式立项和开发阶段的条件。
+Turn a vague game idea into a clear, discussable, and testable concept, then decide whether it is ready for formal project greenlighting and development.
 
-本 Skill 不是替用户“想一个完整游戏”，而是确认：
+This Skill does not invent a complete game for the user. It confirms:
 
-- 为什么做这款游戏，以及为谁而做
-- 玩家具体做什么，核心循环是什么
-- 核心规则为什么成立
-- 目标、选择、代价和反馈是否形成闭环
-- 用户是否已经明确同意立项
+- Why the game exists and who it is for
+- What the player actually does and what the core loop is
+- Why the core rules work
+- Whether goals, choices, costs, and feedback form a coherent loop
+- Whether the user has explicitly approved the project
 
-## 适用范围
+## Response Language
 
-应在以下情况使用：
+Match the user's language. If the user writes in Chinese, ask questions and produce the final brief in Chinese. If the user writes in English, use English. Preserve game titles, proper nouns, and terminology the user has already established.
 
-- 用户提出新游戏想法，并希望把它变成可执行方案
-- 用户准备立项、评估是否值得开发
-- 用户要求开始开发，但核心玩法、目标或规则仍不明确
-- 用户已有设计文档，但需要检查缺口、矛盾和可执行性
+The checklist in this file may remain in English; do not make the user read internal instructions in a different language.
 
-以下情况不要启动完整十问流程：
+## When to Use
 
-- 用户只想头脑风暴、收集灵感或比较多个概念
-- 用户明确只是在讨论理论、做游戏分析或写评论
-- 项目已经确认立项，当前只是实现局部功能、修复 Bug、调整数值或美术
-- 用户只要求解释某个 gameplay 机制，不涉及新项目立项
+Use this Skill when:
 
-如果用户的目标介于“发散讨论”和“准备立项”之间，先确认是要继续发散，还是要进入立项检查；不要擅自启动闸门。
+- The user has a new game idea and wants to turn it into an executable concept
+- The user is preparing a greenlight decision
+- The user asks to start development before the core gameplay, goals, or rules are clear
+- The user has a design document but needs a gap, contradiction, or feasibility review
 
-## 闸门状态
+Do not start the full ten-question process when:
 
-使用三个明确状态：
+- The user only wants open-ended brainstorming, inspiration, or concept comparison
+- The user is discussing game theory, writing analysis, or reviewing games
+- The project is already approved and the task is implementation, bug fixing, balancing, or art
+- The user only asks about a specific gameplay mechanic outside a new project decision
 
-- **草稿**：仍有未回答或不可执行的内容，不具备开发条件
-- **待确认**：十项已回答，且没有阻塞性矛盾，概念摘要已准备好
-- **已确认**：用户明确同意立项，可以进入项目范围和开发规划
+If the intent is between exploration and greenlighting, ask whether the user wants to keep exploring or enter the greenlight review. Do not start the gate without that distinction.
 
-多轮对话中，每次回复开头简要更新：
+## Gate States
+
+Use three explicit states:
+
+- **Draft**: unanswered or non-executable information remains; not ready for development
+- **Ready for Confirmation**: all ten topics are answered and no blocking contradiction remains; the concept brief is ready
+- **Approved**: the user has explicitly approved the project and may proceed to scope and development planning
+
+In multi-turn conversations, begin each response with a compact status:
 
 ```text
-当前状态：草稿
-已回答：4/10
-本轮目标：补齐信息、阻碍和结束条件
+Status: Draft
+Answered: 4/10
+This turn: Fill gaps in information, obstacles, and end conditions
 ```
 
-不要用“基本清楚”“差不多可以”等模糊状态代替上述三种状态。
+Do not replace these states with vague phrases such as "mostly clear" or "probably ready."
 
-## 硬性门槛
+## Hard Gate
 
-在状态达到“已确认”前，不得开始正式的：
+Before the state reaches **Approved**, do not start formal:
 
-- 项目工程创建
-- 生产技术栈选型
-- 开发任务拆分
-- 开发排期和资源承诺
-- 确定性的美术、商业化或发行方案
+- Project repository or engine setup
+- Production technology selection
+- Development task breakdown
+- Development scheduling or resource commitments
+- Final art, monetization, or publishing commitments
 
-必须同时满足：
+All of the following must be true:
 
-1. 十个核心问题都有具体、可执行的回答。
-2. 回答之间没有尚未解决的根本矛盾。
-3. 已整理成完整的概念摘要。
-4. 用户明确表示“确认立项”或作出同等明确的确认。
+1. All ten questions have specific, executable answers.
+2. No unresolved contradiction blocks the concept.
+3. A complete concept brief has been produced.
+4. The user explicitly says the project is approved or gives equally clear confirmation.
 
-用户没有明确确认时，只能继续提问、总结、指出矛盾、提供备选方向或整理概念摘要。不要因为用户催促就把“暂定”当成“已确认”。
+When the user has not confirmed, only continue asking questions, summarize, identify contradictions, offer options, or draft the concept brief. Do not treat urgency as confirmation, and do not convert assumptions into established decisions.
 
-### 例外：探索性原型
+### Exception: Exploratory Prototype
 
-如果用户明确要求用原型验证某个未知玩法，可以允许一个标记为“探索性原型”的小规模验证，但必须满足：
+If the user explicitly asks for a prototype to validate an unknown gameplay assumption, allow a small, time-boxed exploration only when:
 
-- 明确它是一次性验证，不是正式项目工程
-- 限定要验证的具体问题、时间盒和停止条件
-- 临时技术选择不作为正式技术栈承诺
-- 原型结果必须回到概念闸门中更新判断
+- It is clearly identified as a one-off validation, not a production project
+- The question to validate, time limit, and stopping condition are defined
+- Temporary technology choices are not treated as production commitments
+- The result returns to the concept gate for an updated decision
 
-不要把探索性原型扩成产品开发，也不要用“先做出来再说”跳过核心设计问题。
+Do not let an exploratory prototype expand into product development, and do not use "build it first" to avoid unresolved design questions.
 
-## 工作流程
+## Workflow
 
-### 1. 检查已有信息
+### 1. Review Existing Information
 
-先整理用户已经提供的内容。
+Organize what the user has already provided.
 
-- 已回答的问题不要重复询问。
-- 从上下文合理推断但未确认的内容，必须标注为“暂定”。
-- 不因格式完整性而追问对当前阶段没有影响的信息。
-- 如果用户提供了完整设计文档，不要逐题复读；直接做缺口审计和矛盾检查。
+- Do not repeat questions that have already been answered.
+- Label reasonable but unconfirmed inferences as **Provisional**.
+- Do not ask for information that has no effect on the current decision.
+- If the user provides a complete design document, do not replay every question; audit gaps and contradictions directly.
 
-### 2. 分组提问
+### 2. Ask in Groups
 
-不要一次发送十个问题。建议分成三组，每组最多三至四个问题：
+Do not send all ten questions at once. Use three groups with no more than three or four questions per group:
 
-第一组：目的与目标
+**Group 1: Purpose and Goals**
 
-- 核心目的与目标玩家
-- 单机或多人模式
-- 终极目标与短期目标
+- Core purpose and target player
+- Single-player or multiplayer mode
+- Long-term and short-term player goals
 
-第二组：玩法与决策
+**Group 2: Gameplay and Decisions**
 
-- 独有核心规则
-- 可掌控资源
-- 玩家行为、选择与代价
+- Unique core rules
+- Resources the player controls
+- Player actions, choices, and costs
 
-第三组：信息、阻碍与体验
+**Group 3: Information, Obstacles, and Experience**
 
-- 公开信息和隐藏信息
-- 核心障碍与牺牲
-- 结束机制和胜利条件
-- 核心游玩体验与完整核心循环
+- Public and hidden information
+- Core obstacles and sacrifices
+- End conditions and victory conditions
+- Actual play experience and the complete core loop
 
-若用户一次性回答了多个问题，直接整理答案并只追问缺口。
+If the user answers several questions at once, organize the answers and ask only for the gaps.
 
-如果用户不知道如何回答，不要反复追问同一个空问题；给出两到三个具体选项、各自代价和一个推荐方向，并标注仍需用户确认。
+If the user does not know how to answer, do not repeat the same empty question. Offer two or three concrete options, explain their tradeoffs, recommend one direction, and mark it as requiring confirmation.
 
-### 3. 追问到可执行
+### 3. Sharpen Vague Answers
 
-如果回答无法转化为实际规则，继续追问。
+If an answer cannot become a concrete rule, keep asking.
 
-例如用户回答“玩家可以自由探索世界”，应追问：
+For example, if the user says "players can freely explore the world," ask:
 
-- 玩家具体探索什么？
-- 每次探索要做出什么选择？
-- 探索如何推动长期目标？
-- 错误选择或失败会损失什么？
+- What exactly do they explore?
+- What choice do they make during each exploration?
+- How does exploration advance the long-term goal?
+- What do they lose when they fail or choose poorly?
 
-不要把“开放世界”“高自由度”“沉浸感”“玩法丰富”等形容词直接视为设计结论。
+Do not treat adjectives such as "open world," "high freedom," "immersive," or "rich gameplay" as design conclusions.
 
-### 4. 检查概念矛盾
+### 4. Check for Contradictions
 
-重点检查：
+Check at least these relationships:
 
-- 制作目的、目标玩家与核心体验是否一致
-- 单机或多人模式与核心规则是否兼容
-- 短期目标是否服务于长期目标
-- 独有规则是否真正改变玩家决策
-- 资源系统是否产生取舍
-- 障碍是否能阻止玩家直接达成目标
-- 隐藏信息是否产生推理、风险或博弈，而不是单纯制造困惑
-- 结束条件是否与目标体验匹配
-- 核心循环是否能在描述的实际游玩时长内成立
+- Purpose, target player, and core experience align
+- Single-player or multiplayer mode supports the core rules
+- Short-term goals serve the long-term goal
+- Unique rules actually change player decisions
+- The resource system creates meaningful tradeoffs
+- Obstacles prevent the player from reaching the goal too directly
+- Hidden information creates reasoning, risk, or strategic play rather than confusion
+- End conditions match the intended experience
+- The core loop can work within the stated session length
 
-发现矛盾时，不要擅自替用户决定重大方向。说明冲突，给出两到三个可选方向，并请求确认。
+When a contradiction appears, do not make a major decision for the user. Explain the conflict, offer two or three directions, and ask for confirmation.
 
-### 5. 输出概念摘要
+### 5. Produce the Concept Brief
 
-整理成以下结构：
+Use this structure:
 
-# 游戏概念立项摘要
+# Game Concept Greenlight Brief
 
-## 状态
-草稿 / 待确认 / 已确认
+## Status
+Draft / Ready for Confirmation / Approved
 
-## 核心目的与目标玩家
+## Core Purpose and Target Player
 
-## 玩家模式
+## Player Mode
 
-## 玩家目标
-- 终极目标
-- 短期目标
+## Player Goals
+- Long-term goal
+- Short-term goals
 
-## 独有核心规则
+## Unique Core Rules
 
-## 核心资源
+## Core Resources
 
-## 核心循环
-- 局内循环
-- 局外循环（如有）
+## Core Loop
+- Session loop
+- Meta loop, if any
 
-## 玩家行为与关键选择
+## Player Actions and Key Choices
 
-## 信息结构
-- 公开信息
-- 隐藏信息
-- 隐藏信息的发现方式
+## Information Structure
+- Public information
+- Hidden information
+- How hidden information is discovered
 
-## 核心障碍与牺牲
+## Core Obstacles and Sacrifices
 
-## 结束机制与胜利条件
-- 单局结束
-- 整体游戏结束
-- 失败与重开
+## End and Victory Conditions
+- Session end
+- Overall game end
+- Failure and restart
 
-## 核心游玩体验
+## Actual Play Experience
 
-## 主要设计风险
+## Major Design Risks
 
-## 尚未解决的问题
-- 阻塞立项的问题
-- 可以在原型阶段验证的问题
+## Open Questions
+- Issues blocking greenlight
+- Questions that can be tested with a prototype
 
-## 立项结论
-- 建议进入立项 / 补充后重审 / 不建议立项
-- 理由
+## Greenlight Decision
+- Proceed to greenlight / Revise and reassess / Do not proceed
+- Rationale
 
-只使用用户已确认的内容；任何推断都必须标注“暂定”。不要为了填满模板而编造答案。
+Use only content the user has confirmed. Mark all inferences as **Provisional**. Never invent answers just to fill the template. Translate the brief into the user's language unless they request another language.
 
-### 6. 请求明确确认
+### 6. Request Explicit Confirmation
 
-概念摘要完成后，向用户说明：
+After the brief is complete, tell the user:
 
-- 哪些内容已经确认
-- 哪些内容仍是暂定
-- 还有哪些设计风险
-- 是否建议进入下一阶段
+- What has been confirmed
+- What remains provisional
+- Which design risks remain
+- Whether the next stage is recommended
 
-最后明确询问是否确认立项。
+Then explicitly ask whether the project is approved.
 
-只有用户明确确认后，才可以继续讨论：
+Only after explicit approval may the conversation continue into:
 
-- MVP 范围
-- 目标平台
-- 团队规模
-- 预算与周期
-- 技术栈
-- 美术方向
-- 开发里程碑
+- MVP scope
+- Target platform
+- Team size
+- Budget and schedule
+- Technology stack
+- Art direction
+- Development milestones
 
-## 十个核心问题
+## The Ten Questions
 
-1. **核心目的**：为什么做这款游戏？目标玩家是谁？希望玩家获得什么核心体验？怎样算成功？
-2. **玩家模式**：单机、多人、合作、对抗还是其他形式？玩家之间如何互动，为什么这种模式适合核心体验？
-3. **玩家目标**：终极目标和短期目标分别是什么？短期行动如何逐步推动终极目标？
-4. **独有核心规则**：哪些规则区别于其他作品？这些规则改变了玩家的哪些实际决策，而不只是主题或内容差异？
-5. **核心资源**：玩家能掌控、获得、消耗或分配哪些稀缺资源？获得和失去资源的代价是什么？
-6. **行为与选择**：玩家反复执行哪些动作？在哪些节点做出关键选择？每个选择放弃了什么、承担了什么风险？
-7. **信息结构**：哪些信息公开，哪些隐藏？隐藏信息如何被玩家发现，为什么值得隐藏？
-8. **障碍与牺牲**：阻碍玩家达成目标的核心障碍是什么？失败会损失什么？玩家必须放弃哪些资源、机会或路线？
-9. **结束机制**：单局如何结束，整款游戏如何结束？胜利、失败、平局或重开条件是什么？是否存在局外成长或继承？
-10. **游玩体验**：玩家实际看到什么、做什么、如何决策、得到什么反馈？
+1. **Core purpose**: Why make this game? Who is the target player? What core experience should they have? What counts as success?
+2. **Player mode**: Single-player, multiplayer, co-op, competitive, asynchronous, or another form? How do players interact, and why does that mode support the core experience?
+3. **Player goals**: What are the long-term and short-term goals? How do short-term actions move the player toward the long-term goal?
+4. **Unique core rules**: Which rules distinguish the game from other works? Which actual player decisions do they change, beyond theme or content differences?
+5. **Core resources**: Which scarce resources can the player control, gain, spend, or allocate? What does it cost to obtain or lose them?
+6. **Actions and choices**: Which actions does the player repeat? Where are the key decision points? What does each choice give up or put at risk?
+7. **Information structure**: What is public and what is hidden? How does the player discover hidden information, and why is it hidden?
+8. **Obstacles and sacrifices**: What core obstacle prevents the player from reaching the goal? What is lost on failure? Which resources, opportunities, or routes must the player give up?
+9. **End conditions**: How does a session end, and how does the overall game end? What are the victory, failure, draw, and restart conditions? Is there any meta progression or inheritance?
+10. **Play experience**: What does the player see, do, decide, and receive as feedback?
 
-第十题根据游戏类型具体回答：
+Adapt question 10 to the game type:
 
-- 回合制游戏：完整描述一至两个回合，包括玩家行动、对手或系统响应、资源变化、关键决策和反馈。
-- 非回合制游戏：描述开局五至十分钟的核心流程，包括玩家看到什么、做了什么、如何决策以及得到什么反馈。
-- 如果游戏包含局内和局外两层循环，两层都要描述，并说明它们如何互相影响。
+- Turn-based game: describe one or two complete turns, including player actions, opponent or system responses, resource changes, key decisions, and feedback.
+- Non-turn-based game: describe the first five to ten minutes of play, including what the player sees, does, decides, and receives as feedback.
+- If the game has both session and meta loops, describe both and explain how they affect each other.
 
-## 完成标准
+## Completion Criteria
 
-只有同时满足以下条件，才视为概念阶段完成：
+The concept phase is complete only when all of the following are true:
 
-- 十个问题均已得到具体回答
-- 核心规则可以被实际执行
-- 核心循环在目标游玩时长内成立
-- 玩家的选择具有明确代价
-- 目标、障碍和胜利条件形成闭环
-- 没有阻塞立项的根本矛盾
-- 已形成概念摘要
-- 用户明确确认立项
+- All ten questions have concrete answers
+- Core rules can actually be executed
+- The core loop works within the intended session length
+- Player choices have explicit costs
+- Goals, obstacles, and victory conditions form a closed loop
+- No blocking contradiction remains
+- A concept brief has been produced
+- The user has explicitly approved the project
 
-## 不要做
+## Do Not
 
-- 不要在关键概念模糊时直接开始正式开发
-- 不要用通用游戏术语替代具体设计
-- 不要擅自补充用户没有确认的核心玩法
-- 不要因为用户催促就跳过立项闸门
-- 不要把“暂时没想到”当成“已经明确”
-- 不要把探索性原型伪装成正式项目开发
-- 不要因为模板有空位就编造内容
+- Start formal development while the core concept remains unclear
+- Replace concrete design with generic game terminology
+- Invent core gameplay the user has not confirmed
+- Skip the gate because the user is impatient
+- Treat "not decided yet" as "already clear"
+- Disguise an exploratory prototype as formal project development
+- Fill empty template sections with fabrication
